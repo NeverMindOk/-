@@ -1,1 +1,17 @@
-# -
+本项目研究了基于RGB-D相机的驾驶行为分析，分为RGB和ToF两个检测通道。
+models文件夹内为检测使用的分类器文件。
+RGB通道运行代码为Drowsiness_detection系列，可实现人脸朝向识别和闭眼哈欠检测。其中Drowsiness_detection.py使用dlib人脸检测器对人脸进行检测，闭眼检测使用了固定阈值0.23。
+Drowsiness_detection2.py在前一个的基础上实现了选取30帧图片计算平均闭眼平均阈值。
+Drowsiness_detection3.py在第一版本的基础上加入了pose_alarm变量，对检测不到人脸的情况进行判断。
+Drowsiness_detection3.py在第一版本的基础上加入了pose_alarm变量，对检测不到人脸的情况进行判断。
+Drowsiness_detection4.py改用了face_alignment人脸检测器对人脸进行检测，鲁棒性加强但实时性下降。
+Drowsiness_detection5.py对RGB图像和红外图像同时进行检测，其中RGB图像上使用了face_alignment人脸检测器，红外图像上使用了dlib人脸检测器，可对戴墨镜等情况进行检测。使用的ToF相机为SmartToF® TC-S相机。
+tof_set.py为SmartToF® TC-S相机的调用代码。
+ToF通道使用inception_v3网络对驾驶动作进行分类，运行代码为tof_run系列，使用的ToF相机为SmartToF® TC-E相机。
+model_inceptionV3.py为模型载入代码。
+tof_run.py对四种动作进行分类：正常驾驶、看手机、打电话、趴下睡觉。
+tof_run2.py在上述动作中加入了新的状态：无人状态。
+联合检测运行代码为main系列。
+main.py为Drowsiness_detection.py和tof_run.py的联合检测代码。
+main2.py为Drowsiness_detection3.py和tof_run2.py的联合检测代码，加入了无人状态的联合判断。
+main3.py为Drowsiness_detection5.py和tof_run2.py的联合检测代码，使用SmartToF® TC-S相机，进一步加强了极端条件的检测鲁棒性。# -
